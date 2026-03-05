@@ -21,7 +21,10 @@
           }
         },
         "terminal.integrated.defaultProfile.linux": "bash"
-      }
+      },
+      "extensions": [
+        "HirokiMukai.jules-extension"
+      ]
     }
   }
 }
