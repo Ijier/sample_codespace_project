@@ -1,29 +1,23 @@
 {
-  "name": "Python with Postgres",
-  "dockerFile": "./Dockerfile",
-  "forwardPorts": [5432, 8000],
-  "remoteUser": "user",
-  "runArgs": ["--init"],
-  "mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-  ],
-  "overrideCommand": false,
-  "remoteEnv": {
-    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
-    "DOCKER_API_VERSION": "1.43"
+  "name": "Full Stack Dev Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
   },
+  "features": {
+    // これだけで docker と docker-compose が使えるようになります
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    }
+  },
+  // 起動時にサブモジュールを自動展開
+  "postCreateCommand": "git submodule update --init --recursive",
+  // 開発中に使うポートを自動でフォワード
+  "forwardPorts": [3000, 8000, 5432], 
+  "remoteUser": "vscode",
   "customizations": {
     "vscode": {
-      "settings": {
-        "terminal.integrated.profiles.linux": {
-          "bash": {
-            "path": "/bin/bash"
-          }
-        },
-        "terminal.integrated.defaultProfile.linux": "bash"
-      },
       "extensions": [
-        "HirokiMukai.jules-extension"
+        "ms-azuretools.vscode-docker" // Docker管理を便利にする拡張
       ]
     }
   }

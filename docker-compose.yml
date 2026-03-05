@@ -1,13 +1,35 @@
+# アプリケーションの構成図
 services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_DB: mydb
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: myapp_db
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+
 volumes:
   postgres_data:
