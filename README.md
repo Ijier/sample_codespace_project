@@ -5,7 +5,6 @@
 ## Setup
 
 1. Open in GitHub Codespace.
-2. Run `docker compose up -d` in the terminal to start PostgreSQL and the app container.
-3. Run `docker compose exec app python app.py` to test the PostgreSQL connection.
+2. Run `docker compose up -d` in the terminal to start PostgreSQL.
 
 PostgreSQL is available on port 5432 with database 'mydb', user 'user', password 'password'.
