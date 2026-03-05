@@ -1,10 +1,11 @@
-# 概要・開発ガイド(マルチレポ・サブモジュール版)
+# 2026年現在モダンでベストプラクティスなCloud IDE(Codespace)開発環境
 このプロジェクトは、フロントエンドとバックエンドを別々のリポジトリで管理し、この親リポジトリで Git Submodule として統合しています。
 
 
 ## 0. サブモジュールの追加(1回のみ)
 1. ルートディレクトリ（.devcontainer がある場所）で以下を打つ
     ```
+    mkdir frontend backend
     git submodule add https://github.com/ユーザー名/frontend.git frontend
     git submodule add https://github.com/ユーザー名/backend.git backend
     ```
