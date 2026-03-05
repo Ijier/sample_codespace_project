@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  app:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    volumes:
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}
+        target: /workspace
+    working_dir: /workspace
+    command: sleep infinity
+    depends_on:
+      - db
+volumes:
+  postgres_data:
